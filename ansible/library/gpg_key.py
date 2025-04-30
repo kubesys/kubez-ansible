@@ -78,7 +78,9 @@ class GPGKey(object):
         self.changed = True
 
     def ensure_gpg_dir_exists(self):
-        os.makedirs(os.path.dirname(self.output_path), exist_ok=True)
+        directory = os.path.dirname(self.output_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
 
     def install_gpg(self):
         self.ensure_gpg_dir_exists()
